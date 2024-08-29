@@ -109,7 +109,7 @@ int vfs_fstatat(int dfd, const char __user *filename, struct kstat *stat,
 	unsigned int lookup_flags = 0;
 
 #ifdef CONFIG_KSU
-	ksu_handle_stat(&dfd, &filename, &flags);
+	ksu_handle_stat(&dfd, &filename, &flag);
 #endif
 
 	if ((flag & ~(AT_SYMLINK_NOFOLLOW | AT_NO_AUTOMOUNT |
@@ -277,7 +277,7 @@ static int cp_new_stat(struct kstat *stat, struct stat __user *statbuf)
 	tmp.st_ctime_nsec = stat->ctime.tv_nsec;
 #endif
 	tmp.st_blocks = stat->blocks;
-	tmp.st_blksize = stat->blksize
+	tmp.st_blksize = stat->blksize;
 #ifdef CONFIG_KSU_SUSFS_SUS_KSTAT
 	susfs_sus_kstat(tmp.st_ino, &tmp);
 #endif
