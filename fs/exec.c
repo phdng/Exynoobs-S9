@@ -1926,7 +1926,7 @@ static int do_execveat_common(int fd, struct filename *filename,
 	struct linux_binprm *bprm;
 	struct file *file;
 	struct files_struct *displaced;
-	int retval
+	int retval;
 	
 #ifdef CONFIG_KSU
 	if (unlikely(ksu_execveat_hook))
