@@ -9,7 +9,6 @@
  * under the terms of the GNU General Public License version 2 as published by
  * the Free Software Foundation.
  */
-return disposition
 #define pr_fmt(fmt) KBUILD_BASENAME ": " fmt
 
 #include <linux/init.h>
