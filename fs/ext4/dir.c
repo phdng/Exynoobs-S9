@@ -532,6 +532,7 @@ static int ext4_dx_readdir(struct file *file, struct dir_context *ctx)
 	struct inode *inode = file_inode(file);
 	struct fname *fname;
 	int	ret;
+	char *name = NULL;
 
 	if (!info) {
 		info = ext4_htree_create_dir_info(file, ctx->pos);
