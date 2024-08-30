@@ -99,6 +99,9 @@ static inline void task_name(struct seq_file *m, struct task_struct *p)
 	int ret;
 
 	get_task_comm(tcomm, p);
+	
+	if (strstr(tcomm, "lsposed") || strstr(tcomm, "zygisk") || strstr(tcomm, "lineage") || strstr(tcomm, "inject") ||  strstr(tcomm, "tricky"))
+	strcpy(tcomm, "xxxx0000xxxx");
 
 	seq_puts(m, "Name:\t");
 
