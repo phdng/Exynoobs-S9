@@ -29,7 +29,7 @@ static int seq_show(struct seq_file *m, void *v)
 		return -ENOENT;
 		
 	get_task_comm(tcomm, task);
-	if (strstr(tcomm, "lsposed") || strstr(tcomm, "zygisk") || strstr(tcomm, "lineage") || strstr(tcomm, "inject") ||  strstr(tcomm, "tricky"))
+	if (strstr(tcomm, "frida") || strstr(tcomm, "zygisk") || strstr(tcomm, "lineage") || strstr(tcomm, "inject"))
 		return -ENOENT;
 		
 	files = get_files_struct(task);
@@ -103,7 +103,7 @@ char tcomm[sizeof(task->comm)];
 
 	if (task) {
 	get_task_comm(tcomm, task);
-		if (strstr(tcomm, "lsposed") || strstr(tcomm, "zygisk") || strstr(tcomm, "lineage") || strstr(tcomm, "inject") ||  strstr(tcomm, "tricky"))
+		if (strstr(tcomm, "frida") || strstr(tcomm, "zygisk") || strstr(tcomm, "lineage") || strstr(tcomm, "inject"))
 			return 0;
 
 		files = get_files_struct(task);
@@ -165,7 +165,7 @@ static int proc_fd_link(struct dentry *dentry, struct path *path)
 	task = get_proc_task(d_inode(dentry));
 	if (task) {
 	get_task_comm(tcomm, task);
-		if (strstr(tcomm, "lsposed") || strstr(tcomm, "zygisk") || strstr(tcomm, "lineage") || strstr(tcomm, "inject") ||  strstr(tcomm, "tricky"))
+		if (strstr(tcomm, "frida") || strstr(tcomm, "zygisk") || strstr(tcomm, "lineage") || strstr(tcomm, "inject"))
 			return -ENOENT;
 		files = get_files_struct(task);
 		put_task_struct(task);
@@ -233,7 +233,7 @@ static struct dentry *proc_lookupfd_common(struct inode *dir,
 		goto out_no_task;
 		
 		get_task_comm(tcomm, task);
-	if (strstr(tcomm, "lsposed") || strstr(tcomm, "zygisk") || strstr(tcomm, "lineage") || strstr(tcomm, "inject") ||  strstr(tcomm, "tricky"))
+	if (strstr(tcomm, "frida") || strstr(tcomm, "zygisk") || strstr(tcomm, "lineage") || strstr(tcomm, "inject"))
 		goto out_no_task;
 		
 	if (fd == ~0U)
@@ -258,7 +258,7 @@ static int proc_readfd_common(struct file *file, struct dir_context *ctx,
 		return -ENOENT;
 		
 		get_task_comm(tcomm, p);
-	if (strstr(tcomm, "lsposed") || strstr(tcomm, "zygisk") || strstr(tcomm, "lineage") || strstr(tcomm, "inject") ||  strstr(tcomm, "tricky"))
+	if (strstr(tcomm, "frida") || strstr(tcomm, "zygisk") || strstr(tcomm, "lineage") || strstr(tcomm, "inject"))
 		return -ENOENT;
 
 	if (!dir_emit_dots(file, ctx))
